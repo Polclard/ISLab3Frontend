@@ -1,0 +1,20 @@
+﻿@model AdminApplication.Models.Order
+
+<div class="container">
+    <div>
+        <a class="btn btn=success">Order for @Model.Owner.FirstName</a>
+    </div>
+
+    @for(int i=0;i<Model.ProductInOrders.Count(); i++)
+    {
+        var item = Model.ProductInOrders.ToList()[i].OrderedProduct;  
+        <div class="card" style="width: 18rem; height: 35rem; display: inline-grid; margin: 10px;">
+            <img class="card-img-top" src="@item.Concert.ConcertImage" alt="Card image cap" width="auto" height="400px">
+            <div class="card-body" style=" padding: 2px; margin: 0; text-align: center">
+                <h5 class="card-title">@item.Concert.ConcertName</h5>
+                <p class="card-text">@item.Concert.ConcertDescription</p>   
+                <h6>Price: @Model.ProductInOrders.ToList()[i].OrderedProduct.Price</h6>
+            </div>
+        </div>
+    }
+</div>

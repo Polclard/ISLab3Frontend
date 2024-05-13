@@ -1,0 +1,51 @@
+﻿﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<AdminApplication.Models.Order>
+
+<div class="container">
+    <div class="row">
+        <a asp-controller="Order" asp-action="ExportAllOrders" class="btn btn-info">Export Orders</a>
+    </div>
+    <div class="row m-4">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Customer name</th>
+                    <th scope="col">Number of products</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="5">No active orders</td>
+                    </tr>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var item = Model.ElementAt(i);
+
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@item.OwnerId</td>
+                            <td>@item.ProductInOrders.Count</td>
+                            <td><a asp-action="Details" asp-route-Id="@item.Id" class="btn btn-danger">Details</a></td>
+
+                        </tr>
+
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
